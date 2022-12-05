@@ -119,6 +119,7 @@ def sample_cond(config):
     device = config_ddpm.evaluation.device
     if device.startswith("gpu"):
         _, devs = configure_device(device)
+        test_kwargs['accelerator'] = "gpu"
         test_kwargs["gpus"] = devs
 
         # Disable find_unused_parameters when using DDP training for performance reasons
@@ -127,11 +128,11 @@ def sample_cond(config):
         test_kwargs["tpu_cores"] = 8
 
     # Predict loader
+    #pin_memory commented
     val_loader = DataLoader(
         z_dataset,
         batch_size=batch_size,
         drop_last=False,
-        pin_memory=True,
         shuffle=False,
         num_workers=config_ddpm.evaluation.workers,
         **loader_kws,
