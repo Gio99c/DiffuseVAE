@@ -166,7 +166,11 @@ def sample(
     write_mode="image",
 ):
     seed_everything(seed)
-    dev, _ = configure_device(device)
+    if device.startswith('gpu'):
+        dev, _ = configure_device(device)
+    else:
+        dev = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
     if num_samples <= 0:
         raise ValueError(f"`--num-samples` can take values > 0")
 

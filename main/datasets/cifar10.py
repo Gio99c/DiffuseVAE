@@ -8,8 +8,8 @@ from torchvision.datasets import CIFAR10
 
 class CIFAR10Dataset(Dataset):
     def __init__(self, root, norm=True, transform=None, subsample_size=None, **kwargs):
-        if not os.path.isdir(root):
-            raise ValueError(f"The specified root: {root} does not exist")
+        #if not os.path.isdir(root):
+        #    raise ValueError(f"The specified root: {root} does not exist")
 
         if subsample_size is not None:
             assert isinstance(subsample_size, int)

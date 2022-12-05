@@ -12,6 +12,7 @@ torchvision = "==0.12"
 wandb = "*"
 hydra-core = "*"
 scipy = "*"
+torchmetrics = "==0.6.0"
 
 [dev-packages]
 
