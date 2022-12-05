@@ -23,18 +23,18 @@ class CIFAR10Dataset(Dataset):
         self.subsample_size = subsample_size
 
     def __getitem__(self, idx):
-        img, _ = self.dataset[idx]
+        img, label = self.dataset[idx]
         if self.norm:
             img = (np.asarray(img).astype(np.float) / 127.5) - 1.0
         else:
             img = np.asarray(img).astype(np.float) / 255.0
-        return torch.tensor(img).permute(2, 0, 1).float()
+        return torch.tensor(img).permute(2, 0, 1).float(), label
 
     def __len__(self):
         return len(self.dataset) if self.subsample_size is None else self.subsample_size
 
 
 if __name__ == "__main__":
-    root = "/data/kushagrap20/datasets/"
+    root = "./datasets/"
     dataset = CIFAR10Dataset(root)
-    print(dataset[0].shape)
+    print(dataset[0])

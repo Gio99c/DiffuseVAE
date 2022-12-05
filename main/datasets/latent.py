@@ -10,6 +10,7 @@ class LatentDataset(Dataset):
         z_ddpm_size,
         share_ddpm_latent=False,
         expde_model_path=None,
+        
         **kwargs
     ):
         # NOTE: The batch index must be included in the latent code size input
